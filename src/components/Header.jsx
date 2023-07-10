@@ -1,6 +1,8 @@
-import { Button } from 'antd'
+import { Button, Layout } from 'antd'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+// import { useHistory } from 'react-router-dom'
+
 import {
   selectIsLoggedIn,
   selectSignUpClicked,
@@ -9,10 +11,15 @@ import {
   setSignUp,
 } from '../store/request-slice'
 
-const Header = () => {
+// import { useHistory } from 'react'
+
+const { Header } = Layout
+
+const CustomHeader = () => {
   const dispatch = useDispatch()
   const isLoggedIn = useSelector(selectIsLoggedIn)
-  const signInStatus = useSelector(selectSignUpClicked)
+  const signUpClicked = useSelector(selectSignUpClicked)
+  // const history = useHistory()
 
   const handleSignIn = () => {
     dispatch(setSignIn())
@@ -22,33 +29,33 @@ const Header = () => {
   }
   const handleLogOut = () => {
     dispatch(setLogout())
+    // history.push('/')
   }
+
   return (
-    <div className="header">
-      {!isLoggedIn ? (
-        <>
-          <div>
-            {!signInStatus && (
-              <Button style={{ margin: '10px' }} onClick={handleSignIn}>
+    <Header className="header">
+      <div className="logo" />
+      <div className="buttons">
+        {!isLoggedIn ? (
+          <>
+            {!signUpClicked ? (
+              <Button type="primary" onClick={handleSignIn}>
                 Sign In
               </Button>
-            )}
-            {signInStatus && (
+            ) : (
               <Button style={{ margin: '10px' }} onClick={handleSignUp}>
                 Sign Up
               </Button>
             )}
-          </div>
-        </>
-      ) : (
-        <>
-          <div>
+          </>
+        ) : (
+          <>
             <Button onClick={handleLogOut}>Sign Out</Button>
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+      </div>
+    </Header>
   )
 }
 
-export default Header
+export default CustomHeader

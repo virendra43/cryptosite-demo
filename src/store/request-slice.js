@@ -33,6 +33,23 @@ export const getStatsData = createAsyncThunk(
   'statsData/getStatsData',
   async () => {
     console.log('Inside the get state data')
+    // const options = {
+    //   method: 'GET',
+    //   url: 'https://coinranking1.p.rapidapi.com/coins',
+    //   params: {
+    //     referenceCurrencyUuid: 'yhjMzLPhuIDl',
+    //     timePeriod: '24h',
+    //     'tiers[0]': '1',
+    //     orderBy: 'marketCap',
+    //     orderDirection: 'desc',
+    //     limit: '50',
+    //     offset: '0',
+    //   },
+    //   headers: {
+    //     'X-RapidAPI-Key': '9a520044a4mshedb14c4f0e5a474p1aeb86jsna18e25e97646',
+    //     'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com',
+    //   },
+    // }
     const options = {
       method: 'GET',
       url: 'https://coinranking1.p.rapidapi.com/coins',
@@ -46,7 +63,7 @@ export const getStatsData = createAsyncThunk(
         offset: '0',
       },
       headers: {
-        'X-RapidAPI-Key': '9a520044a4mshedb14c4f0e5a474p1aeb86jsna18e25e97646',
+        'X-RapidAPI-Key': '7a8f1bf4e7mshaddf7253cf1dbe4p1157d9jsn5674816b5ea6',
         'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com',
       },
     }
@@ -64,13 +81,14 @@ export const getNewsData = createAsyncThunk(
   async () => {
     const options = {
       method: 'GET',
-      url: 'https://bing-news-search1.p.rapidapi.com/news',
-      params: { safeSearch: 'Off', textFormat: 'Raw' },
-      headers: {
-        'X-BingApis-SDK': 'true',
-        'X-RapidAPI-Key': '9a520044a4mshedb14c4f0e5a474p1aeb86jsna18e25e97646',
-        'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com',
-      },
+      // url: 'https://bing-news-search1.p.rapidapi.com/news',
+      // params: { safeSearch: 'Off', textFormat: 'Raw' },
+      // headers: {
+      //   'X-BingApis-SDK': 'true',
+      //   'X-RapidAPI-Key': '9a520044a4mshedb14c4f0e5a474p1aeb86jsna18e25e97646',
+      //   'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com',
+      // },
+      url: `http://localhost:5000/news`,
     }
 
     return await axios
@@ -84,12 +102,13 @@ export const getCoinDetail = createAsyncThunk(
   'coinDetail/getCoinDetail',
   async (coinId) => {
     console.log('coin id', coinId)
+    console.log('coind id', coinId)
     const options = {
       method: 'GET',
       url: `https://coinranking1.p.rapidapi.com/coin/${coinId}`,
       params: { referenceCurrencyUuid: 'yhjMzLPhuIDl', timePeriod: '24h' },
       headers: {
-        'X-RapidAPI-Key': '9a520044a4mshedb14c4f0e5a474p1aeb86jsna18e25e97646',
+        'X-RapidAPI-Key': '7a8f1bf4e7mshaddf7253cf1dbe4p1157d9jsn5674816b5ea6',
         'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com',
       },
     }
